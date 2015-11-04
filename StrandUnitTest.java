@@ -742,6 +742,90 @@ public class StrandUnitTest
             assertEquals("Base in AACCGGTTACGT should have found A at 8 startAt 5", 8, strand.find(Base.A, 5));
             assertEquals("Base in AACCGGTTACGT should not find A startAt 9", -1, strand.find(Base.A, 9));
             assertEquals("Base in AACCGGTTACGT should not find U", -1, strand.find(Base.U));
+            
+            //Multi-Find
+            Strand mstrand3 = new Strand(Strand.Type.FIVE_PRIME, "ACGT");
+            Strand mstrandR = new Strand(Strand.Type.RNA, "ACGU");
+            
+            //R
+            assertEquals("5'-ACGT should find R startAt 0", 0, mstrand3.find("R", 0));
+            assertEquals("5'-ACGT should find R startAt 1", 2, mstrand3.find("R", 1));
+            assertEquals("RNA ACGU should find R startAt 0", 0, mstrandR.find("R", 0));
+            assertEquals("RNA ACGU should find R startAt 1", 2, mstrandR.find("R", 1));
+            
+            //Y
+            assertEquals("5'-ACGT should find Y startAt 0", 1, mstrand3.find("Y", 0));
+            assertEquals("5'-ACGT should find Y startAt 2", 3, mstrand3.find("Y", 2));
+            assertEquals("RNA ACGU should find Y startAt 0", 1, mstrandR.find("Y", 0));
+            assertEquals("RNA ACGU should find Y startAt 2", 3, mstrandR.find("Y", 2));
+            
+            //K
+            assertEquals("5'-ACGT should find K startAt 0", 2, mstrand3.find("K", 0));
+            assertEquals("5'-ACGT should find K startAt 3", 3, mstrand3.find("K", 3));
+            assertEquals("RNA ACGU should find K startAt 0", 2, mstrandR.find("K", 0));
+            assertEquals("RNA ACGU should find K startAt 3", 3, mstrandR.find("K", 3));
+            
+            //M
+            assertEquals("5'-ACGT should find M startAt 0", 0, mstrand3.find("M", 0));
+            assertEquals("5'-ACGT should find M startAt 1", 1, mstrand3.find("M", 1));
+            assertEquals("RNA ACGU should find M startAt 0", 0, mstrandR.find("M", 0));
+            assertEquals("RNA ACGU should find M startAt 1", 1, mstrandR.find("M", 1));
+            
+            //S
+            assertEquals("5'-ACGT should find S startAt 0", 1, mstrand3.find("S", 0));
+            assertEquals("5'-ACGT should find S startAt 2", 2, mstrand3.find("S", 2));
+            assertEquals("RNA ACGU should find S startAt 0", 1, mstrandR.find("S", 0));
+            assertEquals("RNA ACGU should find S startAt 2", 2, mstrandR.find("S", 2));
+            
+            //W
+            assertEquals("5'-ACGT should find W startAt 0", 0, mstrand3.find("W", 0));
+            assertEquals("5'-ACGT should find W startAt 1", 3, mstrand3.find("W", 1));
+            assertEquals("RNA ACGU should find W startAt 0", 0, mstrandR.find("W", 0));
+            assertEquals("RNA ACGU should find W startAt 1", 3, mstrandR.find("W", 1));
+            
+            //B
+            assertEquals("5'-ACGT should find B startAt 0", 1, mstrand3.find("B", 0));
+            assertEquals("5'-ACGT should find B startAt 2", 2, mstrand3.find("B", 2));
+            assertEquals("5'-ACGT should find B startAt 3", 3, mstrand3.find("B", 3));
+            assertEquals("RNA ACGU should find B startAt 0", 1, mstrandR.find("B", 0));
+            assertEquals("RNA ACGU should find B startAt 2", 2, mstrandR.find("B", 2));
+            assertEquals("RNA ACGU should find B startAt 3", 3, mstrandR.find("B", 3));
+            
+            //D
+            assertEquals("5'-ACGT should find D startAt 0", 0, mstrand3.find("D", 0));
+            assertEquals("5'-ACGT should find D startAt 1", 2, mstrand3.find("D", 1));
+            assertEquals("5'-ACGT should find D startAt 3", 3, mstrand3.find("D", 3));
+            assertEquals("RNA ACGU should find D startAt 0", 0, mstrandR.find("D", 0));
+            assertEquals("RNA ACGU should find D startAt 1", 2, mstrandR.find("D", 1));
+            assertEquals("RNA ACGU should find D startAt 3", 3, mstrandR.find("D", 3));
+            
+            //H
+            assertEquals("5'-ACGT should find H startAt 0", 0, mstrand3.find("H", 0));
+            assertEquals("5'-ACGT should find H startAt 1", 1, mstrand3.find("H", 1));
+            assertEquals("5'-ACGT should find H startAt 2", 3, mstrand3.find("H", 2));
+            assertEquals("RNA ACGU should find H startAt 0", 0, mstrandR.find("H", 0));
+            assertEquals("RNA ACGU should find H startAt 1", 1, mstrandR.find("H", 1));
+            assertEquals("RNA ACGU should find H startAt 2", 3, mstrandR.find("H", 2));
+            
+            //V
+            assertEquals("5'-ACGT should find V startAt 0", 0, mstrand3.find("V", 0));
+            assertEquals("5'-ACGT should find V startAt 1", 1, mstrand3.find("V", 1));
+            assertEquals("5'-ACGT should find V startAt 2", 2, mstrand3.find("V", 2));
+            assertEquals("5'-ACGT should not find V startAt 3", -1, mstrand3.find("V", 3));
+            assertEquals("RNA ACGU should find V startAt 0", 0, mstrandR.find("V", 0));
+            assertEquals("RNA ACGU should find V startAt 1", 1, mstrandR.find("V", 1));
+            assertEquals("RNA ACGU should find V startAt 2", 2, mstrandR.find("V", 2));
+            assertEquals("RNA ACGU should not find V startAt 3", -1, mstrandR.find("V", 3));
+            
+            //N
+            assertEquals("5'-ACGT should find N startAt 0", 0, mstrand3.find("N", 0));
+            assertEquals("5'-ACGT should find N startAt 1", 1, mstrand3.find("N", 1));
+            assertEquals("5'-ACGT should find N startAt 2", 2, mstrand3.find("N", 2));
+            assertEquals("5'-ACGT should find N startAt 3", 3, mstrand3.find("N", 3));
+            assertEquals("RNA ACGU should find N startAt 0", 0, mstrandR.find("N", 0));
+            assertEquals("RNA ACGU should find N startAt 1", 1, mstrandR.find("N", 1));
+            assertEquals("RNA ACGU should find N startAt 2", 2, mstrandR.find("N", 2));
+            assertEquals("RNA ACGU should find N startAt 3", 3, mstrandR.find("N", 3));
         }
         catch(BaseException e)
         {
