@@ -7,8 +7,30 @@ import java.lang.StringBuilder;
  */
 public class Strand
 {   
+    /**
+     * Codes the types of Strand that are legal
+     * 
+     * @author Gregory McWhirter
+     * @version 0.1
+     */
+    public enum Type
+    {
+        /**
+         * Indicates a DNA strand starting at the 3' end
+         */
+        THREE_PRIME, 
+        /**
+         * Indicates a DNA strand starting at the 5' end
+         */
+        FIVE_PRIME, 
+        /**
+         * Indicates an RNA strand
+         */
+        RNA
+    }
+    
     private Base[] seq;
-    private StrandType type;
+    private Type type;
     private String stringRep;
     
     // STATIC METHODS
@@ -46,7 +68,7 @@ public class Strand
      * @param stype the type of the strand (3', 5', or RNA)
      * @param length the length of the strand (in # of base pairs)
      */
-    public Strand(StrandType stype, int length)
+    public Strand(Type stype, int length)
     {
         type = stype;
         //TODO: initialize seq with a new array of Base values
@@ -60,22 +82,7 @@ public class Strand
      * @param stype the type of the strand (3', 5', or RNA)
      * @param seqInput the sequence of base-pairs for the strand
      */
-    public Strand(StrandType stype, String[] seqInput) throws BaseException
-    {
-        type = stype;
-        //TODO: initialize seq with a new array of Base values
-        //Replace the next line -- it is for default compilation purposes
-        seq = new Base[]{};
-        fill(seqInput);
-    }
-    
-    /**
-     * Constructs an strand of given type with the given contents
-     * 
-     * @param stype the type of the strand (3', 5', or RNA)
-     * @param seqInput the sequence of base-pairs for the strand
-     */
-    public Strand(StrandType stype, Base[] seqInput) throws BaseException
+    public Strand(Type stype, String[] seqInput) throws BaseException
     {
         type = stype;
         //TODO: initialize seq with a new array of Base values
@@ -90,7 +97,22 @@ public class Strand
      * @param stype the type of the strand (3', 5', or RNA)
      * @param seqInput the sequence of base-pairs for the strand
      */
-    public Strand(StrandType stype, String seqInput) throws BaseException
+    public Strand(Type stype, Base[] seqInput) throws BaseException
+    {
+        type = stype;
+        //TODO: initialize seq with a new array of Base values
+        //Replace the next line -- it is for default compilation purposes
+        seq = new Base[]{};
+        fill(seqInput);
+    }
+    
+    /**
+     * Constructs an strand of given type with the given contents
+     * 
+     * @param stype the type of the strand (3', 5', or RNA)
+     * @param seqInput the sequence of base-pairs for the strand
+     */
+    public Strand(Type stype, String seqInput) throws BaseException
     {
         type = stype;
         //TODO: initialize seq with a new array of Base values
@@ -156,7 +178,7 @@ public class Strand
      * 
      * @return the type of the strand
      */
-    public StrandType getStrandType()
+    public Type getStrandType()
     {
         return type;
     }
@@ -242,7 +264,7 @@ public class Strand
      */
     public Base[] getPairSeq()
     {
-        return getPairSeq(type == StrandType.RNA);
+        return getPairSeq(type == Type.RNA);
     }
     
     /**
@@ -251,9 +273,9 @@ public class Strand
      * @param stype The strand type to return (3', 5', or RNA)
      * @return the Strand of the requested type that has a sequence paired to the current one.
      */
-    public Strand getPairStrand(StrandType stype) throws BaseException
+    public Strand getPairStrand(Type stype) throws BaseException
     {
-        return new Strand(stype, getPairSeq(stype == StrandType.RNA));
+        return new Strand(stype, getPairSeq(stype == Type.RNA));
     }
     
     /**
@@ -264,21 +286,21 @@ public class Strand
      */
     public Strand getPairStrand(boolean forceRNA) throws BaseException
     {
-        StrandType newType;
+        Type newType;
         if (forceRNA)
         {
-            newType = StrandType.RNA;
+            newType = Type.RNA;
         }
-        else if (type == StrandType.RNA)
+        else if (type == Type.RNA)
         {
-            newType = StrandType.RNA;
+            newType = Type.RNA;
         }
-        else if (type == StrandType.THREE_PRIME)
+        else if (type == Type.THREE_PRIME)
         {
-            newType = StrandType.FIVE_PRIME;
+            newType = Type.FIVE_PRIME;
         }
         else {
-            newType = StrandType.THREE_PRIME;
+            newType = Type.THREE_PRIME;
         }
         return getPairStrand(newType);
     }
@@ -302,14 +324,14 @@ public class Strand
      */
     public Strand getReverseStrand() throws BaseException
     {
-        StrandType newType;
+        Type newType;
         
         //TODO: determine the value of newType
         //      If the current type is RNA, keep the new type as RNA
         //      If the current type is 3', change it to 5'
         //      If the current type if 5', change it to 3'
         //Remove the following line -- it is for default compilation
-        newType = StrandType.RNA;
+        newType = Type.RNA;
         
         Base[] rev;
         //TODO: create a new array of Bases that is the reverse of the current
@@ -638,4 +660,5 @@ public class Strand
         
         return stringRep;
     }
+    
 }

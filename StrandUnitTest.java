@@ -58,16 +58,16 @@ public class StrandUnitTest
     public void testStrandTypeLength()
     {
         Strand strand;
-        strand = new Strand(StrandType.THREE_PRIME, 5);
-        assertEquals("Strand type not properly set for 3'", StrandType.THREE_PRIME, strand.getStrandType());
+        strand = new Strand(Strand.Type.THREE_PRIME, 5);
+        assertEquals("Strand type not properly set for 3'", Strand.Type.THREE_PRIME, strand.getStrandType());
         assertEquals("Strand length not properly set for 3'", 5, strand.getLength());
         
-        strand = new Strand(StrandType.FIVE_PRIME, 6);
-        assertEquals("Strand type not properly set for 5'", StrandType.FIVE_PRIME, strand.getStrandType());
+        strand = new Strand(Strand.Type.FIVE_PRIME, 6);
+        assertEquals("Strand type not properly set for 5'", Strand.Type.FIVE_PRIME, strand.getStrandType());
         assertEquals("Strand length not properly set for 5'", 6, strand.getLength());
         
-        strand = new Strand(StrandType.RNA, 7);
-        assertEquals("Strand type not properly set for RNA", StrandType.RNA, strand.getStrandType());
+        strand = new Strand(Strand.Type.RNA, 7);
+        assertEquals("Strand type not properly set for RNA", Strand.Type.RNA, strand.getStrandType());
         assertEquals("Strand length not properly set for RNA", 7, strand.getLength());
     }
     
@@ -77,8 +77,8 @@ public class StrandUnitTest
         Strand strand;
         try
         {
-            strand = new Strand(StrandType.THREE_PRIME, new String[] {"A","C","G","T","C","G"});
-            assertEquals("Strand type not properly set for 3'", StrandType.THREE_PRIME, strand.getStrandType());
+            strand = new Strand(Strand.Type.THREE_PRIME, new String[] {"A","C","G","T","C","G"});
+            assertEquals("Strand type not properly set for 3'", Strand.Type.THREE_PRIME, strand.getStrandType());
             assertEquals("Strand length not set properly for 3'", 6, strand.getLength());
             assertArrayEquals("Strand contents not set properly for 3'", new Base[] {Base.A, Base.C, Base.G, Base.T, Base.C, Base.G}, strand.getSeq());
         }
@@ -89,9 +89,9 @@ public class StrandUnitTest
         
         try
         {
-            strand = new Strand(StrandType.FIVE_PRIME, new String[] {"A","C","G","T","C"});
+            strand = new Strand(Strand.Type.FIVE_PRIME, new String[] {"A","C","G","T","C"});
             assertEquals("Strand length not set properly for 5'", 5, strand.getLength());
-            assertEquals("Strand type not properly set for 5'", StrandType.FIVE_PRIME, strand.getStrandType());
+            assertEquals("Strand type not properly set for 5'", Strand.Type.FIVE_PRIME, strand.getStrandType());
             assertArrayEquals("Strand contents not set properly for 5'", new Base[]{Base.A, Base.C, Base.G, Base.T, Base.C}, strand.getSeq());
         }
         catch (BaseException e)
@@ -101,8 +101,8 @@ public class StrandUnitTest
         
         try
         {
-            strand = new Strand(StrandType.RNA, new String[] {"A","C","G","U"});
-            assertEquals("Strand type not properly set for RNA", StrandType.RNA, strand.getStrandType());
+            strand = new Strand(Strand.Type.RNA, new String[] {"A","C","G","U"});
+            assertEquals("Strand type not properly set for RNA", Strand.Type.RNA, strand.getStrandType());
             assertEquals("Strand length not set properly for RNA", 4, strand.getLength());
             assertArrayEquals("Strand contents not set properly for RNA", new Base[]{Base.A, Base.C, Base.G, Base.U}, strand.getSeq());
         }
@@ -118,8 +118,8 @@ public class StrandUnitTest
         Strand strand;
         try
         {
-            strand = new Strand(StrandType.THREE_PRIME, "ACGTCG");
-            assertEquals("Strand type not properly set for 3'", StrandType.THREE_PRIME, strand.getStrandType());
+            strand = new Strand(Strand.Type.THREE_PRIME, "ACGTCG");
+            assertEquals("Strand type not properly set for 3'", Strand.Type.THREE_PRIME, strand.getStrandType());
             assertEquals("Strand length not set properly for 3'", 6, strand.getLength());
             assertArrayEquals("Strand contents not set properly for 3'", new Base[] {Base.A, Base.C, Base.G, Base.T, Base.C, Base.G}, strand.getSeq());
         }
@@ -130,9 +130,9 @@ public class StrandUnitTest
         
         try
         {
-            strand = new Strand(StrandType.FIVE_PRIME, "ACGTC");
+            strand = new Strand(Strand.Type.FIVE_PRIME, "ACGTC");
             assertEquals("Strand length not set properly for 5'", 5, strand.getLength());
-            assertEquals("Strand type not properly set for 5'", StrandType.FIVE_PRIME, strand.getStrandType());
+            assertEquals("Strand type not properly set for 5'", Strand.Type.FIVE_PRIME, strand.getStrandType());
             assertArrayEquals("Strand contents not set properly for 5'", new Base[]{Base.A, Base.C, Base.G, Base.T, Base.C}, strand.getSeq());
         }
         catch (BaseException e)
@@ -142,8 +142,8 @@ public class StrandUnitTest
         
         try
         {
-            strand = new Strand(StrandType.RNA, "ACGU");
-            assertEquals("Strand type not properly set for RNA", StrandType.RNA, strand.getStrandType());
+            strand = new Strand(Strand.Type.RNA, "ACGU");
+            assertEquals("Strand type not properly set for RNA", Strand.Type.RNA, strand.getStrandType());
             assertEquals("Strand length not set properly for RNA", 4, strand.getLength());
             assertArrayEquals("Strand contents not set properly for RNA", new Base[]{Base.A, Base.C, Base.G, Base.U}, strand.getSeq());
         }
@@ -161,8 +161,8 @@ public class StrandUnitTest
         try
         {
             bases = new Base[] {Base.A, Base.C, Base.G, Base.T, Base.C};
-            strand = new Strand(StrandType.THREE_PRIME, bases);
-            assertEquals("Strand type not properly set for 3'", StrandType.THREE_PRIME, strand.getStrandType());
+            strand = new Strand(Strand.Type.THREE_PRIME, bases);
+            assertEquals("Strand type not properly set for 3'", Strand.Type.THREE_PRIME, strand.getStrandType());
             assertEquals("Strand length not set properly for 3'", 5, strand.getLength());
             assertArrayEquals("Strand contents not set properly for 3'", bases, strand.getSeq());
             assertNotSame("Strand contents not copied for 3'", bases, strand.getSeq()); 
@@ -175,9 +175,9 @@ public class StrandUnitTest
         try
         {
             bases = new Base[]{Base.A, Base.C, Base.G, Base.T};
-            strand = new Strand(StrandType.FIVE_PRIME, bases);
+            strand = new Strand(Strand.Type.FIVE_PRIME, bases);
             assertEquals("Strand length not set properly for 5'", 4, strand.getLength());
-            assertEquals("Strand type not properly set for 5'", StrandType.FIVE_PRIME, strand.getStrandType());
+            assertEquals("Strand type not properly set for 5'", Strand.Type.FIVE_PRIME, strand.getStrandType());
             assertArrayEquals("Strand contents not set properly for 5'", bases, strand.getSeq());
             assertNotSame("Strand contents not copied for 5'", bases, strand.getSeq());
         }
@@ -189,8 +189,8 @@ public class StrandUnitTest
         try
         {
             bases = new Base[]{Base.C, Base.G, Base.A, Base.U, Base.U};
-            strand = new Strand(StrandType.RNA, bases);
-            assertEquals("Strand type not properly set for RNA", StrandType.RNA, strand.getStrandType());
+            strand = new Strand(Strand.Type.RNA, bases);
+            assertEquals("Strand type not properly set for RNA", Strand.Type.RNA, strand.getStrandType());
             assertEquals("Strand length not set properly for RNA", 5, strand.getLength());
             assertArrayEquals("Strand contents not set properly for RNA", bases, strand.getSeq());
             assertNotSame("Strand contents not copied for RNA", bases, strand.getSeq());
@@ -209,7 +209,7 @@ public class StrandUnitTest
         
         try
         {
-            strand = new Strand(StrandType.THREE_PRIME, new Base[] {Base.U, Base.C, Base.G, Base.T, Base.C});
+            strand = new Strand(Strand.Type.THREE_PRIME, new Base[] {Base.U, Base.C, Base.G, Base.T, Base.C});
             thrown = false;
         }
         catch (BaseException e)
@@ -220,7 +220,7 @@ public class StrandUnitTest
         
         try
         {
-            strand = new Strand(StrandType.FIVE_PRIME, new Base[] {Base.U, Base.C, Base.G, Base.T, Base.C});
+            strand = new Strand(Strand.Type.FIVE_PRIME, new Base[] {Base.U, Base.C, Base.G, Base.T, Base.C});
             thrown = false;
         }
         catch (BaseException e)
@@ -231,7 +231,7 @@ public class StrandUnitTest
         
         try
         {
-            strand = new Strand(StrandType.RNA, new Base[] {Base.T, Base.C, Base.G, Base.T, Base.C});
+            strand = new Strand(Strand.Type.RNA, new Base[] {Base.T, Base.C, Base.G, Base.T, Base.C});
             thrown = false;
         }
         catch (BaseException e)
@@ -254,7 +254,7 @@ public class StrandUnitTest
         {
             try
             {
-                strand = new Strand(StrandType.THREE_PRIME, new String[] {base});
+                strand = new Strand(Strand.Type.THREE_PRIME, new String[] {base});
                 thrown = false;
             }
             catch (BaseException e)
@@ -265,7 +265,7 @@ public class StrandUnitTest
             
             try
             {
-                strand = new Strand(StrandType.FIVE_PRIME, new String[] {base});
+                strand = new Strand(Strand.Type.FIVE_PRIME, new String[] {base});
                 thrown = false;
             }
             catch (BaseException e)
@@ -279,7 +279,7 @@ public class StrandUnitTest
         {
             try
             {
-                strand = new Strand(StrandType.RNA, new String[] {base});
+                strand = new Strand(Strand.Type.RNA, new String[] {base});
                 thrown = false;
             }
             catch (BaseException e)
@@ -303,7 +303,7 @@ public class StrandUnitTest
         {
             try
             {
-                strand = new Strand(StrandType.THREE_PRIME, base);
+                strand = new Strand(Strand.Type.THREE_PRIME, base);
                 thrown = false;
             }
             catch (BaseException e)
@@ -314,7 +314,7 @@ public class StrandUnitTest
             
             try
             {
-                strand = new Strand(StrandType.FIVE_PRIME, base);
+                strand = new Strand(Strand.Type.FIVE_PRIME, base);
                 thrown = false;
             }
             catch (BaseException e)
@@ -328,7 +328,7 @@ public class StrandUnitTest
         {
             try
             {
-                strand = new Strand(StrandType.RNA, base);
+                strand = new Strand(Strand.Type.RNA, base);
                 thrown = false;
             }
             catch (BaseException e)
@@ -342,9 +342,9 @@ public class StrandUnitTest
     @Test
     public void testStrandValidateFillStrings()
     {
-        Strand strand3 = new Strand(StrandType.THREE_PRIME, 1);
-        Strand strand5 = new Strand(StrandType.FIVE_PRIME, 1);
-        Strand strandR = new Strand(StrandType.RNA, 1);
+        Strand strand3 = new Strand(Strand.Type.THREE_PRIME, 1);
+        Strand strand5 = new Strand(Strand.Type.FIVE_PRIME, 1);
+        Strand strandR = new Strand(Strand.Type.RNA, 1);
         boolean thrown = false;
         
         String[] bases35 = {"A","C","G","T"};
@@ -442,9 +442,9 @@ public class StrandUnitTest
     @Test
     public void testStrandValidateFillBases()
     {
-        Strand strand3 = new Strand(StrandType.THREE_PRIME, 1);
-        Strand strand5 = new Strand(StrandType.FIVE_PRIME, 1);
-        Strand strandR = new Strand(StrandType.RNA, 1);
+        Strand strand3 = new Strand(Strand.Type.THREE_PRIME, 1);
+        Strand strand5 = new Strand(Strand.Type.FIVE_PRIME, 1);
+        Strand strandR = new Strand(Strand.Type.RNA, 1);
         boolean thrown = false;
         
         Base[] bases35 = {Base.A, Base.C, Base.G, Base.T};
@@ -505,9 +505,9 @@ public class StrandUnitTest
     @Test
     public void testStrandLength()
     {
-        Strand strand3 = new Strand(StrandType.THREE_PRIME, 3);
-        Strand strand5 = new Strand(StrandType.FIVE_PRIME, 4);
-        Strand strandR = new Strand(StrandType.RNA, 5);
+        Strand strand3 = new Strand(Strand.Type.THREE_PRIME, 3);
+        Strand strand5 = new Strand(Strand.Type.FIVE_PRIME, 4);
+        Strand strandR = new Strand(Strand.Type.RNA, 5);
         
         assertEquals("getLength() incorrect for 3' called with length 3", 3, strand3.getLength());
         assertEquals("getLength() incorrect for 5' called with length 4", 4, strand5.getLength());
@@ -519,23 +519,23 @@ public class StrandUnitTest
     {
         try
         {
-            Strand strand3a = new Strand(StrandType.THREE_PRIME, new String[]{"A","C","G","T"});
-            Strand strand3b = new Strand(StrandType.THREE_PRIME, new String[]{"A","C","G","T"});
-            Strand strand3c = new Strand(StrandType.THREE_PRIME, new String[]{"A","G","C","T"});
-            Strand strand3d = new Strand(StrandType.THREE_PRIME, new String[]{"A","C","G"});
-            Strand strand3e = new Strand(StrandType.THREE_PRIME, new String[]{"A","C","G","T", "T"});
+            Strand strand3a = new Strand(Strand.Type.THREE_PRIME, new String[]{"A","C","G","T"});
+            Strand strand3b = new Strand(Strand.Type.THREE_PRIME, new String[]{"A","C","G","T"});
+            Strand strand3c = new Strand(Strand.Type.THREE_PRIME, new String[]{"A","G","C","T"});
+            Strand strand3d = new Strand(Strand.Type.THREE_PRIME, new String[]{"A","C","G"});
+            Strand strand3e = new Strand(Strand.Type.THREE_PRIME, new String[]{"A","C","G","T", "T"});
             
-            Strand strand5a = new Strand(StrandType.FIVE_PRIME, new String[]{"A","C","G","T"});
-            Strand strand5b = new Strand(StrandType.FIVE_PRIME, new String[]{"A","C","G","T"});
-            Strand strand5c = new Strand(StrandType.FIVE_PRIME, new String[]{"A","G","C","T"});
-            Strand strand5d = new Strand(StrandType.FIVE_PRIME, new String[]{"A","C","G"});
-            Strand strand5e = new Strand(StrandType.FIVE_PRIME, new String[]{"A","C","G","T","T"});
+            Strand strand5a = new Strand(Strand.Type.FIVE_PRIME, new String[]{"A","C","G","T"});
+            Strand strand5b = new Strand(Strand.Type.FIVE_PRIME, new String[]{"A","C","G","T"});
+            Strand strand5c = new Strand(Strand.Type.FIVE_PRIME, new String[]{"A","G","C","T"});
+            Strand strand5d = new Strand(Strand.Type.FIVE_PRIME, new String[]{"A","C","G"});
+            Strand strand5e = new Strand(Strand.Type.FIVE_PRIME, new String[]{"A","C","G","T","T"});
             
-            Strand strandRa = new Strand(StrandType.RNA, new String[]{"A","C","G"});
-            Strand strandRb = new Strand(StrandType.RNA, new String[]{"A","C","G"});
-            Strand strandRc = new Strand(StrandType.RNA, new String[]{"A","U","G"});
-            Strand strandRd = new Strand(StrandType.RNA, new String[]{"A","C","G","G"});
-            Strand strandRe = new Strand(StrandType.RNA, new String[]{"A","C"});
+            Strand strandRa = new Strand(Strand.Type.RNA, new String[]{"A","C","G"});
+            Strand strandRb = new Strand(Strand.Type.RNA, new String[]{"A","C","G"});
+            Strand strandRc = new Strand(Strand.Type.RNA, new String[]{"A","U","G"});
+            Strand strandRd = new Strand(Strand.Type.RNA, new String[]{"A","C","G","G"});
+            Strand strandRe = new Strand(Strand.Type.RNA, new String[]{"A","C"});
             
             assertTrue("3'-ACGT should equal 3'-ACGT", strand3a.equals(strand3b));
             assertEquals("3'-ACGT should equal 3'-ACGT in a test", strand3a, strand3b);
@@ -573,9 +573,9 @@ public class StrandUnitTest
     {
         try
         {
-            Strand strand3 = new Strand(StrandType.THREE_PRIME, new String[]{"A","C","G","T","A"});
-            Strand strand5 = new Strand(StrandType.FIVE_PRIME, new String[]{"A","C","G","T","A"});
-            Strand strandR = new Strand(StrandType.RNA, new String[]{"U","G","C","A","U"});
+            Strand strand3 = new Strand(Strand.Type.THREE_PRIME, new String[]{"A","C","G","T","A"});
+            Strand strand5 = new Strand(Strand.Type.FIVE_PRIME, new String[]{"A","C","G","T","A"});
+            Strand strandR = new Strand(Strand.Type.RNA, new String[]{"U","G","C","A","U"});
             
             Base[] pair35 = {Base.T, Base.G, Base.C, Base.A, Base.T};
             Base[] pair35R = {Base.U, Base.G, Base.C, Base.A, Base.U};
@@ -604,39 +604,39 @@ public class StrandUnitTest
     {
         try
         {
-            Strand strand3 = new Strand(StrandType.THREE_PRIME, new String[]{"A","C","G","T","A"});
-            Strand pair35 = new Strand(StrandType.FIVE_PRIME, new String[]{"T","G","C","A","T"});
-            Strand pair3R = new Strand(StrandType.RNA, new String[]{"U","G","C","A","U"});
+            Strand strand3 = new Strand(Strand.Type.THREE_PRIME, new String[]{"A","C","G","T","A"});
+            Strand pair35 = new Strand(Strand.Type.FIVE_PRIME, new String[]{"T","G","C","A","T"});
+            Strand pair3R = new Strand(Strand.Type.RNA, new String[]{"U","G","C","A","U"});
             
-            Strand strand5 = new Strand(StrandType.FIVE_PRIME, new String[]{"A","C","G","T","A"});
-            Strand pair53 = new Strand(StrandType.THREE_PRIME, new String[]{"T","G","C","A","T"});
-            Strand pair5R = new Strand(StrandType.RNA, new String[]{"U","G","C","A","U"});
+            Strand strand5 = new Strand(Strand.Type.FIVE_PRIME, new String[]{"A","C","G","T","A"});
+            Strand pair53 = new Strand(Strand.Type.THREE_PRIME, new String[]{"T","G","C","A","T"});
+            Strand pair5R = new Strand(Strand.Type.RNA, new String[]{"U","G","C","A","U"});
             
-            Strand strandR = new Strand(StrandType.RNA, new String[]{"U","G","C","A","U"});
-            Strand pairR = new Strand(StrandType.RNA, new String[]{"A","C","G","U","A"});
-            Strand pairR3 = new Strand(StrandType.THREE_PRIME, new String[]{"A","C","G","T","A"});
-            Strand pairR5 = new Strand(StrandType.FIVE_PRIME, new String[]{"A","C","G","T","A"});
+            Strand strandR = new Strand(Strand.Type.RNA, new String[]{"U","G","C","A","U"});
+            Strand pairR = new Strand(Strand.Type.RNA, new String[]{"A","C","G","U","A"});
+            Strand pairR3 = new Strand(Strand.Type.THREE_PRIME, new String[]{"A","C","G","T","A"});
+            Strand pairR5 = new Strand(Strand.Type.FIVE_PRIME, new String[]{"A","C","G","T","A"});
             
             assertEquals("3'-ACGTA pair should be 5'-TGCAT", pair35, strand3.getPairStrand());
             assertEquals("3'-ACGTA pair w/ false should be 5'-TGCAT", pair35, strand3.getPairStrand(false));
             assertEquals("3'-ACGTA pair w/ true should be RNA UGCAU", pair3R, strand3.getPairStrand(true));
-            assertEquals("3'-ACGTA pair w/ FIVE should be 5'-TGCAT", pair35, strand3.getPairStrand(StrandType.FIVE_PRIME));
-            assertEquals("3'-ACGTA pair w/ THREE should be 3'-TGCAT", pair53, strand3.getPairStrand(StrandType.THREE_PRIME));
-            assertEquals("3'-ACGTA pair w/ RNA should be RNA UGCAU", pair3R, strand3.getPairStrand(StrandType.RNA));
+            assertEquals("3'-ACGTA pair w/ FIVE should be 5'-TGCAT", pair35, strand3.getPairStrand(Strand.Type.FIVE_PRIME));
+            assertEquals("3'-ACGTA pair w/ THREE should be 3'-TGCAT", pair53, strand3.getPairStrand(Strand.Type.THREE_PRIME));
+            assertEquals("3'-ACGTA pair w/ RNA should be RNA UGCAU", pair3R, strand3.getPairStrand(Strand.Type.RNA));
             
             assertEquals("5'-ACGTA pair should be 3'-TGCAT", pair53, strand5.getPairStrand());
             assertEquals("5'-ACGTA pair w/ false should be 3'-TGCAT", pair53, strand5.getPairStrand(false));
             assertEquals("5'-ACGTA pair w/ true should be RNA UGCAU", pair5R, strand5.getPairStrand(true));
-            assertEquals("5'-ACGTA pair w/ FIVE should be 5'-TGCAT", pair35, strand5.getPairStrand(StrandType.FIVE_PRIME));
-            assertEquals("5'-ACGTA pair w/ THREE should be 3'-TGCAT", pair53, strand5.getPairStrand(StrandType.THREE_PRIME));
-            assertEquals("5'-ACGTA pair w/ RNA should be RNA UGCAU", pair5R, strand5.getPairStrand(StrandType.RNA));
+            assertEquals("5'-ACGTA pair w/ FIVE should be 5'-TGCAT", pair35, strand5.getPairStrand(Strand.Type.FIVE_PRIME));
+            assertEquals("5'-ACGTA pair w/ THREE should be 3'-TGCAT", pair53, strand5.getPairStrand(Strand.Type.THREE_PRIME));
+            assertEquals("5'-ACGTA pair w/ RNA should be RNA UGCAU", pair5R, strand5.getPairStrand(Strand.Type.RNA));
             
             assertEquals("RNA UGCAU pair should be RNA ACGUA", pairR, strandR.getPairStrand());
             assertEquals("RNA UGCAU pair w/ false should be RNA ACGUA", pairR, strandR.getPairStrand(false));
             assertEquals("RNA UGCAU pair w/ true should be RNA ACGUA", pairR, strandR.getPairStrand(true));
-            assertEquals("RNA UGCAU pair w/ FIVE should be 5'-ACGTA", pairR5, strandR.getPairStrand(StrandType.FIVE_PRIME));
-            assertEquals("RNA UGCAU pair w/ THREE should be 3'-ACGTA", pairR3, strandR.getPairStrand(StrandType.THREE_PRIME));
-            assertEquals("RNA UGCAU pair w/ RNA should be RNA ACGUA", pairR, strandR.getPairStrand(StrandType.RNA));
+            assertEquals("RNA UGCAU pair w/ FIVE should be 5'-ACGTA", pairR5, strandR.getPairStrand(Strand.Type.FIVE_PRIME));
+            assertEquals("RNA UGCAU pair w/ THREE should be 3'-ACGTA", pairR3, strandR.getPairStrand(Strand.Type.THREE_PRIME));
+            assertEquals("RNA UGCAU pair w/ RNA should be RNA ACGUA", pairR, strandR.getPairStrand(Strand.Type.RNA));
         }
         catch (BaseException e)
         {
@@ -649,15 +649,15 @@ public class StrandUnitTest
     {
         try
         {
-            Strand strand = new Strand(StrandType.THREE_PRIME, new String[] {"A","C","G","T","C","G"});
+            Strand strand = new Strand(Strand.Type.THREE_PRIME, new String[] {"A","C","G","T","C","G"});
             
             assertEquals("Substrand of ACGTCG starting at 0 failed", strand, strand.getSubStrand(0));
             assertEquals("Substrand of ACGTCG starting at 0 and ending at length failed", strand, strand.getSubStrand(0, strand.getLength()));
             assertNotSame("Substrand of ACGTCG creating a new object failed", strand, strand.getSubStrand(0));
             assertNotSame("Substrand of ACGTCG creating a new object failed w/ end", strand, strand.getSubStrand(0, strand.getLength()));
             
-            assertEquals("Substrand of ACGTCG starting at 1 failed", new Strand(StrandType.THREE_PRIME, new String[] {"C","G","T","C", "G"}), strand.getSubStrand(1));
-            assertEquals("Substrand of ACGTCG starting at 1 and ending at len-1 failed", new Strand(StrandType.THREE_PRIME, new String[] {"C","G","T","C"}), strand.getSubStrand(1,strand.getLength() - 1));
+            assertEquals("Substrand of ACGTCG starting at 1 failed", new Strand(Strand.Type.THREE_PRIME, new String[] {"C","G","T","C", "G"}), strand.getSubStrand(1));
+            assertEquals("Substrand of ACGTCG starting at 1 and ending at len-1 failed", new Strand(Strand.Type.THREE_PRIME, new String[] {"C","G","T","C"}), strand.getSubStrand(1,strand.getLength() - 1));
         }
         catch (BaseException e)
         {
@@ -670,9 +670,9 @@ public class StrandUnitTest
     {
         try
         {
-            Strand strand3 = new Strand(StrandType.THREE_PRIME, new String[] {"A","C","G","T","C","G"});
-            Strand strand5 = new Strand(StrandType.FIVE_PRIME, new String[] {"C","G","T","A"});
-            Strand strandR = new Strand(StrandType.RNA, new String[] {"C","G","U","A"});
+            Strand strand3 = new Strand(Strand.Type.THREE_PRIME, new String[] {"A","C","G","T","C","G"});
+            Strand strand5 = new Strand(Strand.Type.FIVE_PRIME, new String[] {"C","G","T","A"});
+            Strand strandR = new Strand(Strand.Type.RNA, new String[] {"C","G","U","A"});
             
             assertEquals("DNA 3'-ACGTCG-5' representation was incorrect.", "DNA 3'-ACGTCG-5'", strand3.toString());
             assertEquals("DNA 5'-CGTA-3' representation was incorrect.", "DNA 5'-CGTA-3'", strand5.toString());
@@ -689,7 +689,7 @@ public class StrandUnitTest
     {
         try
         {
-            Strand strand = new Strand(StrandType.FIVE_PRIME, new String[]{"A","A","C","C","G","G","T","T","A","C","G","T"});
+            Strand strand = new Strand(Strand.Type.FIVE_PRIME, new String[]{"A","A","C","C","G","G","T","T","A","C","G","T"});
             
             //Test Base[]
             assertEquals("Base[] in AACCGGTTACGT should have found A at 0", 0, strand.find(new Base[]{Base.A}));
@@ -702,14 +702,14 @@ public class StrandUnitTest
             assertEquals("Base[] in AACCGGTTACGT should not find U", -1, strand.find(new Base[]{Base.U}));
         
             //Test Strand
-            assertEquals("Strand in AACCGGTTACGT should have found A at 0", 0, strand.find(new Strand(StrandType.FIVE_PRIME, new Base[]{Base.A})));
-            assertEquals("Strand in AACCGGTTACGT should have found A at 0 startAt 0", 0, strand.find(new Strand(StrandType.THREE_PRIME, new Base[]{Base.A}), 0));
-            assertEquals("Strand in AACCGGTTACGT should have found A at 1 startAt 1", 1, strand.find(new Strand(StrandType.FIVE_PRIME, new Base[]{Base.A}), 1));
-            assertEquals("Strand in AACCGGTTACGT should have found AC at 1", 1, strand.find(new Strand(StrandType.FIVE_PRIME, new Base[]{Base.A, Base.C})));
-            assertEquals("Strand in AACCGGTTACGT should have found AC at 8 startAt 5", 8, strand.find(new Strand(StrandType.FIVE_PRIME, new Base[]{Base.A, Base.C}), 5));
-            assertEquals("Strand in AACCGGTTACGT should not find AT", -1, strand.find(new Strand(StrandType.FIVE_PRIME, new Base[]{Base.A, Base.T})));
-            assertEquals("Strand in AACCGGTTACGT should not find AA startAt 1", -1, strand.find(new Strand(StrandType.FIVE_PRIME, new Base[]{Base.A, Base.A}), 1));
-            assertEquals("Strand in AACCGGTTACGT should not find U", -1, strand.find(new Strand(StrandType.RNA, new Base[]{Base.U})));
+            assertEquals("Strand in AACCGGTTACGT should have found A at 0", 0, strand.find(new Strand(Strand.Type.FIVE_PRIME, new Base[]{Base.A})));
+            assertEquals("Strand in AACCGGTTACGT should have found A at 0 startAt 0", 0, strand.find(new Strand(Strand.Type.THREE_PRIME, new Base[]{Base.A}), 0));
+            assertEquals("Strand in AACCGGTTACGT should have found A at 1 startAt 1", 1, strand.find(new Strand(Strand.Type.FIVE_PRIME, new Base[]{Base.A}), 1));
+            assertEquals("Strand in AACCGGTTACGT should have found AC at 1", 1, strand.find(new Strand(Strand.Type.FIVE_PRIME, new Base[]{Base.A, Base.C})));
+            assertEquals("Strand in AACCGGTTACGT should have found AC at 8 startAt 5", 8, strand.find(new Strand(Strand.Type.FIVE_PRIME, new Base[]{Base.A, Base.C}), 5));
+            assertEquals("Strand in AACCGGTTACGT should not find AT", -1, strand.find(new Strand(Strand.Type.FIVE_PRIME, new Base[]{Base.A, Base.T})));
+            assertEquals("Strand in AACCGGTTACGT should not find AA startAt 1", -1, strand.find(new Strand(Strand.Type.FIVE_PRIME, new Base[]{Base.A, Base.A}), 1));
+            assertEquals("Strand in AACCGGTTACGT should not find U", -1, strand.find(new Strand(Strand.Type.RNA, new Base[]{Base.U})));
         
             //Test String[]
             assertEquals("String[] in AACCGGTTACGT should have found A at 0", 0, strand.find(new String[]{"A"}));
@@ -750,14 +750,14 @@ public class StrandUnitTest
     {
         try
         {
-            Strand strand3 = new Strand(StrandType.THREE_PRIME, new String[]{"A","C","G","T","A"});
-            Strand rev3 = new Strand(StrandType.FIVE_PRIME, new String[]{"A","T","G","C","A"});
+            Strand strand3 = new Strand(Strand.Type.THREE_PRIME, new String[]{"A","C","G","T","A"});
+            Strand rev3 = new Strand(Strand.Type.FIVE_PRIME, new String[]{"A","T","G","C","A"});
             
-            Strand strand5 = new Strand(StrandType.FIVE_PRIME, new String[]{"A","C","G","T","A"});
-            Strand rev5 = new Strand(StrandType.THREE_PRIME, new String[]{"A","T","G","C","A"});
+            Strand strand5 = new Strand(Strand.Type.FIVE_PRIME, new String[]{"A","C","G","T","A"});
+            Strand rev5 = new Strand(Strand.Type.THREE_PRIME, new String[]{"A","T","G","C","A"});
             
-            Strand strandR = new Strand(StrandType.RNA, new String[]{"U","G","C","A","U"});
-            Strand revR = new Strand(StrandType.RNA, new String[]{"U","A","C","G","U"});
+            Strand strandR = new Strand(Strand.Type.RNA, new String[]{"U","G","C","A","U"});
+            Strand revR = new Strand(Strand.Type.RNA, new String[]{"U","A","C","G","U"});
             
             assertEquals("3'-ACGTA reverse should be 5'-ATGCA", rev3, strand3.getReverseStrand());
             assertEquals("5'-ACGTA reverse should be 3'-ATGCA", rev5, strand5.getReverseStrand());
@@ -774,7 +774,7 @@ public class StrandUnitTest
     {
         try
         {
-            Strand strand = new Strand(StrandType.FIVE_PRIME, new String[]{"A","A","C","C","G","G","T","T","A","C","G","T"});
+            Strand strand = new Strand(Strand.Type.FIVE_PRIME, new String[]{"A","A","C","C","G","G","T","T","A","C","G","T"});
             
             //Test Base[]
             assertEquals("Base[] in 5'-AACCGGTTACGT should have found AAC at 0 geneStart 0", 0, strand.findCodon(new Base[]{Base.A, Base.A, Base.C}, 0));
