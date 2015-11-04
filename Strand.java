@@ -71,7 +71,7 @@ public class Strand
     public Strand(Type stype, int length)
     {
         type = stype;
-        //TODO: initialize seq with a new array of Base values
+        //TODO: initialize seq with a new array of Base values of the correct length
         //Replace the next line -- it is for default compilation purposes
         seq = new Base[]{};
     }
@@ -85,7 +85,7 @@ public class Strand
     public Strand(Type stype, String[] seqInput) throws BaseException
     {
         type = stype;
-        //TODO: initialize seq with a new array of Base values
+        //TODO: initialize seq with a new array of Base values of the correct length
         //Replace the next line -- it is for default compilation purposes
         seq = new Base[]{};
         fill(seqInput);
@@ -100,7 +100,7 @@ public class Strand
     public Strand(Type stype, Base[] seqInput) throws BaseException
     {
         type = stype;
-        //TODO: initialize seq with a new array of Base values
+        //TODO: initialize seq with a new array of Base values of the correct length
         //Replace the next line -- it is for default compilation purposes
         seq = new Base[]{};
         fill(seqInput);
@@ -115,7 +115,7 @@ public class Strand
     public Strand(Type stype, String seqInput) throws BaseException
     {
         type = stype;
-        //TODO: initialize seq with a new array of Base values
+        //TODO: initialize seq with a new array of Base values of the correct length
         //Replace the next line -- it is for default compilation purposes
         seq = new Base[]{};
         fill(seqInput.split(""));
@@ -132,8 +132,8 @@ public class Strand
         boolean okay = true;
 
         //TODO: check the bases in seq for validity
-        //      If the type is RNA, the base U is not allowed
-        //      If the type is DNA, the base T is not allowed
+        //      If the type is RNA, the base T is not allowed
+        //      If the type is DNA, the base U is not allowed
         //      If a disallowed type is present, set okay to false.
         
         if (!okay)
