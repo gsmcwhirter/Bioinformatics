@@ -74,6 +74,7 @@ public class GeneAnalyzer
      */
     public static int findGenes(Strand strand)
     {
+        System.out.println("--------------------------------");
         System.out.println("Base pairs: " + strand.getLength());
         System.out.println();
         
