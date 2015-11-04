@@ -617,6 +617,56 @@ public class Strand
     }
     
     /**
+     * Finds the location of the next start codon ATG
+     * 
+     * Prerequisites: the strand should be in 5' orientation.
+     * 
+     * Note: This could find spurious starts if asked to start in
+     * the middle of another gene.
+     * 
+     * @param startAt the location in the sequence to start looking
+     * @return the index of the A in the ATG sequence, or -1 if not found
+     */
+    public int findGeneStart(int startAt)
+    {
+        //TODO: find the location, if any of the first
+        //      ATG sequence starting at startAt
+        return -1;
+    }
+    
+    /**
+     * Finds the location of the next start codon ATG
+     * 
+     * Prerequisites: the strand should be in 5' orientation.
+     * 
+     * Note: This could find spurious starts if asked to start in
+     * the middle of another gene.
+     * 
+     * @return the index of the A in the ATG sequence, or -1 if not found
+     */
+    public int findGeneStart()
+    {
+        return findGeneStart(0);
+    }
+    
+    /**
+     * Finds the location of the next stop codon (TGA/TAA/TAG) after
+     * the start of the gene.
+     * 
+     * Prerequisites: the strand should be in 5' orientation.
+     * 
+     * @param geneStart the index of the start of the gene to consider
+     * @return the index of the T in the stop codon, or -1 if not found
+     * 
+     */
+    public int findGeneStop(int geneStart)
+    {
+        //TODO: find the location of the next stop codon (TGA/TAA/TAG)
+        //      after the start of the gene.
+        return -1;
+    }
+    
+    /**
      * Generate a string representation of the strand.
      * 
      * The representation is memoized.

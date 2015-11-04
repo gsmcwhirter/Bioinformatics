@@ -697,6 +697,7 @@ public class StrandUnitTest
             assertEquals("Base[] in AACCGGTTACGT should have found A at 1 startAt 1", 1, strand.find(new Base[]{Base.A}, 1));
             assertEquals("Base[] in AACCGGTTACGT should have found AC at 1", 1, strand.find(new Base[]{Base.A, Base.C}));
             assertEquals("Base[] in AACCGGTTACGT should have found AC at 8 startAt 5", 8, strand.find(new Base[]{Base.A, Base.C}, 5));
+            assertEquals("Base[] in AACCGGTTACGT should have found CGT at 9 startAt 0", 9, strand.find(new Base[]{Base.C, Base.G, Base.T}, 0));
             assertEquals("Base[] in AACCGGTTACGT should not find AT", -1, strand.find(new Base[]{Base.A, Base.T}));
             assertEquals("Base[] in AACCGGTTACGT should not find AA startAt 1", -1, strand.find(new Base[]{Base.A, Base.A}, 1));
             assertEquals("Base[] in AACCGGTTACGT should not find U", -1, strand.find(new Base[]{Base.U}));
@@ -707,6 +708,7 @@ public class StrandUnitTest
             assertEquals("Strand in AACCGGTTACGT should have found A at 1 startAt 1", 1, strand.find(new Strand(Strand.Type.FIVE_PRIME, new Base[]{Base.A}), 1));
             assertEquals("Strand in AACCGGTTACGT should have found AC at 1", 1, strand.find(new Strand(Strand.Type.FIVE_PRIME, new Base[]{Base.A, Base.C})));
             assertEquals("Strand in AACCGGTTACGT should have found AC at 8 startAt 5", 8, strand.find(new Strand(Strand.Type.FIVE_PRIME, new Base[]{Base.A, Base.C}), 5));
+            assertEquals("Strand in AACCGGTTACGT should have found CGT at 9 startAt 0", 9, strand.find(new Strand(Strand.Type.FIVE_PRIME, new Base[]{Base.C, Base.G, Base.T}), 0));
             assertEquals("Strand in AACCGGTTACGT should not find AT", -1, strand.find(new Strand(Strand.Type.FIVE_PRIME, new Base[]{Base.A, Base.T})));
             assertEquals("Strand in AACCGGTTACGT should not find AA startAt 1", -1, strand.find(new Strand(Strand.Type.FIVE_PRIME, new Base[]{Base.A, Base.A}), 1));
             assertEquals("Strand in AACCGGTTACGT should not find U", -1, strand.find(new Strand(Strand.Type.RNA, new Base[]{Base.U})));
@@ -717,6 +719,7 @@ public class StrandUnitTest
             assertEquals("String[] in AACCGGTTACGT should have found A at 1 startAt 1", 1, strand.find(new String[]{"A"}, 1));
             assertEquals("String[] in AACCGGTTACGT should have found AC at 1", 1, strand.find(new String[]{"A","C"}));
             assertEquals("String[] in AACCGGTTACGT should have found AC at 8 startAt 5", 8, strand.find(new String[]{"A","C"}, 5));
+            assertEquals("String[] in AACCGGTTACGT should have found CGT at 9 startAt 0", 9, strand.find(new String[]{"C", "G", "T"}, 0));
             assertEquals("String[] in AACCGGTTACGT should not find AT", -1, strand.find(new String[]{"A", "T"}));
             assertEquals("String[] in AACCGGTTACGT should not find AA startAt 1", -1, strand.find(new String[]{"A", "A"}, 1));
             assertEquals("String[] in AACCGGTTACGT should not find U", -1, strand.find(new String[]{"U"}));
@@ -727,6 +730,7 @@ public class StrandUnitTest
             assertEquals("String in AACCGGTTACGT should have found A at 1 startAt 1", 1, strand.find("A", 1));
             assertEquals("String in AACCGGTTACGT should have found AC at 1", 1, strand.find("AC"));
             assertEquals("String in AACCGGTTACGT should have found AC at 8 startAt 5", 8, strand.find("AC", 5));
+            assertEquals("String in AACCGGTTACGT should have found CGT at 9 startAt 0", 9, strand.find("CGT", 0));
             assertEquals("String in AACCGGTTACGT should not find AT", -1, strand.find("AT"));
             assertEquals("String in AACCGGTTACGT should not find AA startAt 1", -1, strand.find("AA", 1));
             assertEquals("String in AACCGGTTACGT should not find U", -1, strand.find("U"));
@@ -831,6 +835,59 @@ public class StrandUnitTest
             assertEquals("String in 5'-AACCGGTTACGT should have not found ACC geneStart 0", -1, strand.findCodon("ACC", 0));
             assertEquals("String in 5'-AACCGGTTACGT should have not found ACC geneStart 0 startAt 1", -1, strand.findCodon("ACC", 0, 1));
         
+        }
+        catch(BaseException e)
+        {
+            assertTrue("A strand threw when it shouldn't have.", false);
+        }
+    }
+    
+    @Test
+    public void testStrandFindGeneStart()
+    {
+        try
+        {
+            Strand strand = new Strand(Strand.Type.FIVE_PRIME, new String[]{"A","T","G","C","G","A","T","G","A","C","G","T"});
+            
+            assertEquals("5'-ATGCGATGACGT should start a gene at 0", 0, strand.findGeneStart());
+            assertEquals("5'-ATGCGATGACGT should start a gene at 0 startAt 0", 0, strand.findGeneStart(0));
+            assertEquals("5'-ATGCGATGACGT should start a gene at 5 startAt 1", 5, strand.findGeneStart(1));
+            assertEquals("5'-ATGCGATGACGT should not start a gene startAt 6", -1, strand.findGeneStart(6));
+            
+            strand = new Strand(Strand.Type.FIVE_PRIME, new String[]{"N","A","T","G","C","G","A","T","G","A","C","G","T"});
+            
+            assertEquals("5'-NATGCGATGACGT should start a gene at 1", 1, strand.findGeneStart());
+            assertEquals("5'-NATGCGATGACGT should start a gene at 1 startAt 0", 1, strand.findGeneStart(0));
+            assertEquals("5'-NATGCGATGACGT should start a gene at 1 startAt 1", 1, strand.findGeneStart(1));
+            assertEquals("5'-NATGCGATGACGT should start a gene at 6 startAt 2", 6, strand.findGeneStart(2));
+            assertEquals("5'-NATGCGATGACGT should not start a gene startAt 7", -1, strand.findGeneStart(7));
+        }
+        catch(BaseException e)
+        {
+            assertTrue("A strand threw when it shouldn't have.", false);
+        }
+    }
+    
+    @Test
+    public void testStrandFindGeneStop()
+    {
+        try
+        {
+            Strand strand = new Strand(Strand.Type.FIVE_PRIME, new String[]{"A","T","G","C","T","G","A","T","A","A","T","A","G"});
+            
+            assertEquals("5'-ATGCTGATAATAG should end a gene at 4 geneStart 1", 4, strand.findGeneStop(1));
+            assertEquals("5'-ATGCTGATAATAG should end a gene at 7 geneStart 4", 7, strand.findGeneStop(4));
+            assertEquals("5'-ATGCTGATAATAG should end a gene at 10 geneStart 7", 10, strand.findGeneStop(7));
+            assertEquals("5'-ATGCTGATAATAG should not end a gene geneStart 0", -1, strand.findGeneStop(0));
+            assertEquals("5'-ATGCTGATAATAG should not end a gene geneStart 2", -1, strand.findGeneStop(2));
+            assertEquals("5'-ATGCTGATAATAG should not end a gene geneStart 3", -1, strand.findGeneStop(3));
+            assertEquals("5'-ATGCTGATAATAG should not end a gene geneStart 5", -1, strand.findGeneStop(5));
+            assertEquals("5'-ATGCTGATAATAG should not end a gene geneStart 6", -1, strand.findGeneStop(6));
+            assertEquals("5'-ATGCTGATAATAG should not end a gene geneStart 8", -1, strand.findGeneStop(8));
+            assertEquals("5'-ATGCTGATAATAG should not end a gene geneStart 9", -1, strand.findGeneStop(9));
+            assertEquals("5'-ATGCTGATAATAG should not end a gene geneStart 10", -1, strand.findGeneStop(10));
+            assertEquals("5'-ATGCTGATAATAG should not end a gene geneStart 11", -1, strand.findGeneStop(11));
+            assertEquals("5'-ATGCTGATAATAG should not end a gene geneStart 12", -1, strand.findGeneStop(12));
         }
         catch(BaseException e)
         {
