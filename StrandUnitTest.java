@@ -826,6 +826,15 @@ public class StrandUnitTest
             assertEquals("RNA ACGU should find N startAt 1", 1, mstrandR.find("N", 1));
             assertEquals("RNA ACGU should find N startAt 2", 2, mstrandR.find("N", 2));
             assertEquals("RNA ACGU should find N startAt 3", 3, mstrandR.find("N", 3));
+            
+            //EXACT
+            Strand strandAll = new Strand(Strand.Type.RNA, "RYKMSWBDHVNX");
+            String[] bases = "RYKMSWBDHVNX".split("");
+            
+            for (int i = 0; i < bases.length; i++)
+            {
+                assertEquals("RNA RYKMSWBDHVNX should find "+bases[i]+" startAt 0", i, strandAll.find(bases[i], 0));
+            }
         }
         catch(BaseException e)
         {
